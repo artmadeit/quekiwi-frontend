@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Home() {
   return (
     <main>
@@ -22,8 +24,12 @@ function Header() {
       <nav>
         <ul>
           <li>Inicio</li>
-          <li>Nosotros</li>
-          <li>Contactenos</li>
+          <li>
+            <Link href="nosotros">Nosotros</Link>
+          </li>
+          <li>
+            <Link href="contactenos">Contactenos</Link>
+          </li>
         </ul>
       </nav>
     </header>
