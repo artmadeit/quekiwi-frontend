@@ -1,4 +1,5 @@
 import { Inter } from "next/font/google";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,7 +15,36 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
+  );
+}
+
+function Footer() {
+  const year = new Date().getFullYear();
+  return <footer>Copyright © QueKiwi {year}</footer>;
+}
+
+function Header() {
+  return (
+    <header>
+      <nav>
+        <ul>
+          <li>
+            <Link href="">Inicio</Link>
+          </li>
+          <li>
+            <Link href="nosotros">Nosotros</Link>
+          </li>
+          <li>
+            <Link href="contactenos">Contactenos</Link>
+          </li>
+        </ul>
+      </nav>
+    </header>
   );
 }
