@@ -1,17 +1,33 @@
-const veterinarios = [
-  {
-    id: 1,
-    nombre: "Alex",
-    especialidad: "Oncologia",
-  },
-  {
-    id: 2,
-    nombre: "Malena",
-    especialidad: "Oncologia",
-  },
-];
+// const veterinarios = [
+//   {
+//     id: 1,
+//     nombre: "Alex",
+//     especialidad: "Oncologia",
+//   },
+//   {
+//     id: 2,
+//     nombre: "Malena",
+//     especialidad: "Oncologia",
+//   },
+// ];
 
-export default function Nosotros() {
+interface Veterinario {
+  id: number;
+  nombre: string;
+  apellido: string;
+  dni: string;
+  numeroCertificado: string;
+  especialidad: string;
+  salario: number;
+}
+
+export default async function Nosotros() {
+  const response = await fetch("http://localhost:8080/veterinarios", {
+    cache: "no-cache",
+  });
+  const veterinarioPage = await response.json();
+  const veterinarios: Veterinario[] = veterinarioPage.content;
+
   return (
     <div>
       <h1>Nosotros</h1>
@@ -19,6 +35,7 @@ export default function Nosotros() {
       <h3>Objetivo</h3>
       <p>Nuestra meta en el 2026 es lograr a ser</p>
 
+      <h3>Nuestro equipo:</h3>
       {veterinarios.map((veterinario) => (
         <VeterinarioCard
           key={veterinario.id}
@@ -30,12 +47,12 @@ export default function Nosotros() {
   );
 }
 
-interface Veterinario {
+interface VeterinarioCardProps {
   nombre: string;
   especialidad: string;
 }
 
-function VeterinarioCard({ nombre, especialidad }: Veterinario) {
+function VeterinarioCard({ nombre, especialidad }: VeterinarioCardProps) {
   return (
     <div style={{ border: "2px solid black" }}>
       <h4>{nombre}</h4>
