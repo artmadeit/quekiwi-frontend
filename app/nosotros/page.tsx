@@ -1,15 +1,4 @@
-// const veterinarios = [
-//   {
-//     id: 1,
-//     nombre: "Alex",
-//     especialidad: "Oncologia",
-//   },
-//   {
-//     id: 2,
-//     nombre: "Malena",
-//     especialidad: "Oncologia",
-//   },
-// ];
+import Link from "next/link";
 
 interface Veterinario {
   id: number;
@@ -36,6 +25,9 @@ export default async function Nosotros() {
       <p>Nuestra meta en el 2026 es lograr a ser</p>
 
       <h3>Nuestro equipo:</h3>
+      <Link href="veterinarios/crear">
+        <button>Agregar veterinario</button>
+      </Link>
       {veterinarios.map((veterinario) => (
         <VeterinarioCard
           key={veterinario.id}
